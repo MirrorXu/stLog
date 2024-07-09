@@ -9,6 +9,9 @@ export function isString(val) {
 export const isPlainObject = (val) => {
     return toString.call(val) === '[object Object]'
 }
+export const isFunction = (val) => {
+    return toString.call(val) === '[object Function]'
+}
 export function deepMerge(...args) {
     const ret = {}
     args.forEach(arg => {

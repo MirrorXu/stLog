@@ -1,5 +1,5 @@
 {
-  "name": "stlog",
+  "name": "mirror-log",
   "version": "1.0.0",
   "description": "美化浏览器控制台输出",
   "main": "index.js",

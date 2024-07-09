@@ -1,6 +1,6 @@
 
 
-import { deepMerge , isString } from "./helpers.js";
+import {deepMerge, isFunction, isString} from "./helpers.js";
 
 const icon = ">>>"
 const defaultMethodConfig = {
@@ -37,22 +37,27 @@ function logWithConfig(config = defaultMethodConfig, ...args) {
     let {icon, title, style} = config
     title = icon ? `${icon} ${title}` : title
     title = `%c ${title}`
-    console.log(title, style , ...args)
+    if(console && console.log && isFunction(console.log)){
+        console.log(title, style , ...args)
+    }else{
+        throw new Error('抱歉，运行时环境不支持console.log')
+    }
+
 }
 
-function stLog( ...args) {
-    stLog.default(...args)
+function log( ...args) {
+    log.default(...args)
 }
 
 
-stLog._config = defaultsConfig
+log._config = defaultsConfig
 
 // extends
-stLog.extends = function (...configs) {
-    stLog._config = deepMerge(stLog._config, ...configs)
-    Object.keys(stLog._config).forEach(methodName => {
-        stLog[methodName] = function ( message , ...userArgs) {
-            const config = Object.assign( {} , stLog._config[methodName] || stLog._config.default || defaultMethodConfig)
+log.extends = function (...configs) {
+    log._config = deepMerge(log._config, ...configs)
+    Object.keys(log._config).forEach(methodName => {
+        log[methodName] = function ( message , ...userArgs) {
+            const config = Object.assign( {} , log._config[methodName] || log._config.default || defaultMethodConfig)
             let args;
             if(isString(message)) {
                 config.title = message;
@@ -65,7 +70,7 @@ stLog.extends = function (...configs) {
     })
 }
 
-stLog.extends()
+log.extends()
 
 
-export default stLog
+export default log
