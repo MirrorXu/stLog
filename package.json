@@ -1,0 +1,11 @@
+{
+  "name": "stlog",
+  "version": "1.0.0",
+  "description": "美化浏览器控制台输出",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xuxulee@163.com <MirrorXu>",
+  "license": "ISC"
+}

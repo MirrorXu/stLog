@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test stLog</title>
+</head>
+<body>
+
+<script type="module">
+    import stLog from "./index.js";
+
+    console.log(stLog, Object.getOwnPropertyNames(stLog))
+    stLog()
+    const args = 'hello world'.split('')
+    stLog(...args)
+    stLog.info(...args)
+    stLog.success(...args)
+    stLog.warn(...args)
+    stLog.error(...args)
+    stLog.extends({
+        default: {
+            style: 'color:#ccdd55;font-weight:bold;',
+        },
+        blue:{
+            style: 'color:#0000ff;font-weight:bold;',
+            icon:'####'
+        }
+    })
+    console.log(stLog._config)
+    stLog('ninfa')
+    stLog.blue('蓝色标题' , [])
+</script>
+
+</body>
+</html>
